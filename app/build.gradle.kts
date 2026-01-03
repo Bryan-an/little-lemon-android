@@ -2,6 +2,36 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.detekt)
+}
+
+spotless {
+    kotlin {
+        target("**/*.kt")
+        ktlint().editorConfigOverride(
+            mapOf(
+                // Jetpack Compose convention: Composable functions are typically PascalCase.
+                "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+            ),
+        )
+    }
+    kotlinGradle {
+        target("**/*.gradle.kts")
+        ktlint()
+    }
+    format("misc") {
+        target("*.md", ".gitignore", "**/*.xml")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    autoCorrect = false
+    // Generated once with `./gradlew detektBaseline`, then kept in VCS.
+    baseline = file("$rootDir/config/detekt/baseline.xml")
 }
 
 android {
@@ -25,7 +55,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -39,6 +69,11 @@ android {
     buildFeatures {
         compose = true
     }
+}
+
+tasks.named("check") {
+    dependsOn("spotlessCheck")
+    dependsOn("detekt")
 }
 
 dependencies {
