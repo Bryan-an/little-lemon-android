@@ -21,7 +21,7 @@ spotless {
         ktlint()
     }
     format("misc") {
-        target("*.md", ".gitignore", "**/*.xml")
+        target("*.md", ".gitignore", "src/**/*.xml")
         trimTrailingWhitespace()
         endWithNewline()
     }
