@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: "en-US"
+
+reviews:
+  profile: "chill"
+
+  auto_review:
+    enabled: true
+    drafts: false
+
+  # Reduce noise and risk (build outputs / IDE files / signing keys / artifacts)
+  path_filters:
+    - "**"
+    - "!**/build/**"
+    - "!**/.gradle/**"
+    - "!**/.idea/**"
+    - "!**/*.iml"
+    - "!**/local.properties"
+    - "!**/*.jks"
+    - "!**/*.keystore"
+    - "!**/*.apk"
+    - "!**/*.aab"
+
+  tools:
+    github-checks:
+      enabled: true
+      timeout_ms: 90000
+    gitleaks:
+      enabled: true
+
+tone_instructions: >
+  Android app (Kotlin/Jetpack Compose). Keep reviews concise and actionable.
+  Focus on correctness, security, performance, accessibility, and Compose/state best practices.
+  Flag Gradle/dependency risks; suggest tests when relevant.
+
+chat:
+  auto_reply: false
+
+
