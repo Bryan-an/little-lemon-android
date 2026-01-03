@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+msg_file="${1:?Missing commit message file path}"
+
+# Use the first non-comment line as the commit "header"
+header="$(grep -vE '^[[:space:]]*#' "$msg_file" | head -n 1 | tr -d '\r')"
+
+if [[ -z "$header" ]]; then
+  echo "Empty commit message."
+  exit 1
+fi
+
+# Allow merge commits and reverts created by Git tools
+if echo "$header" | grep -Eq '^(Merge |Revert ")'; then
+  exit 0
+fi
+
+# Allow fixup!/squash! commits (interactive rebase)
+if echo "$header" | grep -Eq '^(fixup! |squash! )'; then
+  exit 0
+fi
+
+# Conventional Commits-ish:
+# type(scope)!: subject
+pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?: .+'
+
+if ! echo "$header" | grep -Eq "$pattern"; then
+  echo "Invalid commit message."
+  echo "Expected: type(scope)!: subject"
+  echo "Allowed types: feat fix docs style refactor perf test build ci chore revert"
+  echo "Examples:"
+  echo "  feat(menu): add categories filter"
+  echo "  fix: handle null user session"
+  echo "  refactor(ui)!: migrate to new theme API"
+  exit 1
+fi
+
+
