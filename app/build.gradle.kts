@@ -30,6 +30,7 @@ spotless {
 detekt {
     buildUponDefaultConfig = true
     autoCorrect = false
+    config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
     // Generated once with `./gradlew detektBaseline`, then kept in VCS.
     baseline = file("$rootDir/config/detekt/baseline.xml")
 }
