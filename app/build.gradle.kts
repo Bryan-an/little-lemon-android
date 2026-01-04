@@ -31,8 +31,6 @@ detekt {
     buildUponDefaultConfig = true
     autoCorrect = false
     config.setFrom(files("$rootDir/config/detekt/detekt.yml"))
-    // Generated once with `./gradlew detektBaseline`, then kept in VCS.
-    baseline = file("$rootDir/config/detekt/baseline.xml")
 }
 
 android {
@@ -79,6 +77,7 @@ tasks.named("check") {
 
 dependencies {
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
