@@ -52,7 +52,9 @@ private fun PalettePreviewContent() {
                     modifier = Modifier.padding(16.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
+                    Text("Markazi Text (Display)", style = MaterialTheme.typography.displayMedium)
                     Text("Primary / Secondary / Tertiary", style = MaterialTheme.typography.titleMedium)
+                    Text("Paragraph text sample", style = MaterialTheme.typography.bodyLarge)
                     Button(onClick = {}, contentPadding = PaddingValues(horizontal = 16.dp, vertical = 10.dp)) {
                         Text("Primary Button")
                     }
