@@ -1,0 +1,17 @@
+build:
+  maxIssues: 0
+
+naming:
+  FunctionNaming:
+    active: true
+    ignoreAnnotated:
+      - 'Composable'
+
+style:
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated:
+      - 'Preview'
+      - 'PreviewScreenSizes'
+
+
