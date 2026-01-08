@@ -34,7 +34,11 @@ fun LittleLemonNavHost(
 
         composable(LittleLemonRoutes.HOME) {
             HomeRoute(
-                onNavigateToProfile = { navController.navigate(LittleLemonRoutes.PROFILE) },
+                onNavigateToProfile = {
+                    navController.navigate(LittleLemonRoutes.PROFILE) {
+                        launchSingleTop = true
+                    }
+                },
             )
         }
 
