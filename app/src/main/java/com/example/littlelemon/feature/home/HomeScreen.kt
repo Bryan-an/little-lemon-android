@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -25,8 +26,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.littlelemon.R
 import com.example.littlelemon.ui.theme.LittleLemonTheme
-
-private const val HOME_LOGO_WIDTH_FRACTION = 0.5f
 
 @Composable
 fun HomeScreen(
@@ -52,7 +51,7 @@ fun HomeScreen(
                         Modifier
                             .align(Alignment.Center)
                             .height(40.dp)
-                            .fillMaxWidth(HOME_LOGO_WIDTH_FRACTION),
+                            .width(200.dp),
                     )
 
                     IconButton(
