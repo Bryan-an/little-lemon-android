@@ -122,8 +122,12 @@ fun OnboardingScreen(
             )
 
             RegisterButton(
-                enabled = uiState.isFormValid,
-                onClick = actions.onRegisterClick,
+                onClick = {
+                    firstNameTouched = true
+                    lastNameTouched = true
+                    emailTouched = true
+                    actions.onRegisterClick()
+                },
             )
         }
     }
@@ -259,13 +263,11 @@ private fun EmailTextField(
 
 @Composable
 private fun RegisterButton(
-    enabled: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     FilledTonalButton(
         onClick = onClick,
-        enabled = enabled,
         modifier =
         modifier
             .fillMaxWidth()

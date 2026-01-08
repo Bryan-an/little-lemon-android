@@ -13,4 +13,14 @@
     <!-- Validation -->
     <string name="error_required">Required</string>
     <string name="error_invalid_email">Enter a valid email</string>
+
+    <!-- Registration -->
+    <string name="registration_unsuccessful">Registration unsuccessful. Please enter all data.</string>
+    <string name="registration_successful">Registration successful!</string>
+
+    <!-- Home/Profile -->
+    <string name="home_screen">Home screen</string>
+    <string name="profile_screen">Profile screen</string>
+    <string name="go_to_profile">Go to profile</string>
+    <string name="logout">Logout</string>
 </resources>
