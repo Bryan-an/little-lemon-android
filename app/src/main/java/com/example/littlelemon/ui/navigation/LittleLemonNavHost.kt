@@ -5,11 +5,14 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.littlelemon.feature.home.HomeRoute
 import com.example.littlelemon.feature.onboarding.OnboardingRoute
+import com.example.littlelemon.feature.profile.ProfileRoute
 
 @Composable
 fun LittleLemonNavHost(
     navController: NavHostController,
+    onShowMessage: (Int) -> Unit,
     modifier: Modifier = Modifier,
     startDestination: String = LittleLemonRoutes.ONBOARDING,
 ) {
@@ -19,7 +22,34 @@ fun LittleLemonNavHost(
         modifier = modifier,
     ) {
         composable(LittleLemonRoutes.ONBOARDING) {
-            OnboardingRoute()
+            OnboardingRoute(
+                onShowMessage = onShowMessage,
+                onNavigateToHome = {
+                    navController.navigate(LittleLemonRoutes.HOME) {
+                        launchSingleTop = true
+                    }
+                },
+            )
+        }
+
+        composable(LittleLemonRoutes.HOME) {
+            HomeRoute(
+                onNavigateToProfile = {
+                    navController.navigate(LittleLemonRoutes.PROFILE) {
+                        launchSingleTop = true
+                    }
+                },
+            )
+        }
+
+        composable(LittleLemonRoutes.PROFILE) {
+            ProfileRoute(
+                onNavigateToOnboarding = {
+                    navController.navigate(LittleLemonRoutes.ONBOARDING) {
+                        launchSingleTop = true
+                    }
+                },
+            )
         }
     }
 }
