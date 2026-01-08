@@ -2,6 +2,7 @@ package com.example.littlelemon.feature.profile
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.collectLatest
 
@@ -10,6 +11,8 @@ fun ProfileRoute(
     onNavigateToOnboarding: () -> Unit,
     viewModel: ProfileViewModel = viewModel(),
 ) {
+    val uiState = viewModel.uiState.collectAsStateWithLifecycle()
+
     LaunchedEffect(Unit) {
         viewModel.effects.collectLatest { effect ->
             when (effect) {
@@ -19,6 +22,7 @@ fun ProfileRoute(
     }
 
     ProfileScreen(
+        uiState = uiState.value,
         onLogoutClick = viewModel::onLogoutClick,
     )
 }

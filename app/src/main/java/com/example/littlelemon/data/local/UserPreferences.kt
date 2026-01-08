@@ -15,6 +15,12 @@ class UserPreferences(
 
     fun isLoggedIn(): Boolean = prefs.getBoolean(KEY_IS_LOGGED_IN, false)
 
+    fun getFirstName(): String = prefs.getString(KEY_FIRST_NAME, "").orEmpty()
+
+    fun getLastName(): String = prefs.getString(KEY_LAST_NAME, "").orEmpty()
+
+    fun getEmail(): String = prefs.getString(KEY_EMAIL, "").orEmpty()
+
     fun observeIsLoggedIn(): Flow<Boolean> = callbackFlow {
         val listener =
             SharedPreferences.OnSharedPreferenceChangeListener { _, key ->

@@ -22,5 +22,7 @@
     <string name="home_screen">Home screen</string>
     <string name="profile_screen">Profile screen</string>
     <string name="go_to_profile">Go to profile</string>
-    <string name="logout">Logout</string>
+    <string name="profile_information">Profile information:</string>
+    <string name="profile_icon_content_description">Open profile</string>
+    <string name="logout">Log out</string>
 </resources>
