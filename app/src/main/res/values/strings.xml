@@ -22,9 +22,10 @@
     <string name="home_screen">Home screen</string>
     <string name="profile_screen">Profile screen</string>
     <string name="go_to_profile">Go to profile</string>
-    <string name="profile_information">Profile information:</string>
+    <string name="profile_information">Profile information</string>
     <string name="profile_icon_content_description">Open profile</string>
     <string name="logout">Log out</string>
+    <string name="not_set">Not set</string>
 
     <!-- Home (Hero/Menu) -->
     <string name="restaurant_city">Chicago</string>
