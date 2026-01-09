@@ -25,4 +25,12 @@
     <string name="profile_information">Profile information:</string>
     <string name="profile_icon_content_description">Open profile</string>
     <string name="logout">Log out</string>
+
+    <!-- Home (Hero/Menu) -->
+    <string name="restaurant_city">Chicago</string>
+    <string name="restaurant_description">We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist</string>
+    <string name="search_placeholder">Enter search phrase</string>
+    <string name="order_for_delivery">Order for delivery!</string>
+    <string name="menu_sync_failed">Menu sync failed: %1$s</string>
+    <string name="menu_item_image_content_description">Image of %1$s</string>
 </resources>
