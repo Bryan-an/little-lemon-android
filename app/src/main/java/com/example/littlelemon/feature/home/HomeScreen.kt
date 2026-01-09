@@ -224,7 +224,7 @@ private fun HeroText(modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         Text(
-            text = stringResource(R.string.restaurant_name),
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.headlineLarge,
             color = MaterialTheme.colorScheme.secondaryContainer,
         )
@@ -247,7 +247,7 @@ private fun HeroText(modifier: Modifier = Modifier) {
 private fun HeroImage(modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(R.drawable.hero_image),
-        contentDescription = stringResource(R.string.hero_image_content_description),
+        contentDescription = null,
         contentScale = ContentScale.Crop,
         modifier =
         modifier
@@ -352,7 +352,7 @@ private val previewMenuItems =
         MenuItem(
             id = 1,
             title = "Greek Salad",
-            description = "The famous greek salad of crispy lettuce, peppers, olives, our Chicago.",
+            description = "The famous Greek salad of crispy lettuce, peppers, and olives with our house dressing.",
             price = "12.99",
             image = "",
             category = "starters",
