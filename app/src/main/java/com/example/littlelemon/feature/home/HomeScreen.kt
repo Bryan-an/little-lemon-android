@@ -172,8 +172,10 @@ private fun MenuErrorMessage(
     message: String,
     modifier: Modifier = Modifier,
 ) {
+    val label = stringResource(R.string.menu_sync_failed, message)
+
     Text(
-        text = "Menu sync failed: $message",
+        text = label,
         color = MaterialTheme.colorScheme.error,
         style = MaterialTheme.typography.bodyMedium,
         modifier = modifier.padding(horizontal = 16.dp, vertical = 4.dp),

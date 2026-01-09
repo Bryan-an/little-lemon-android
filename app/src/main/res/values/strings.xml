@@ -33,5 +33,6 @@
     <string name="hero_image_content_description">Restaurant hero image</string>
     <string name="search_placeholder">Enter search phrase</string>
     <string name="order_for_delivery">Order for delivery!</string>
+    <string name="menu_sync_failed">Menu sync failed: %1$s</string>
     <string name="menu_item_image_content_description">Image of %1$s</string>
 </resources>
