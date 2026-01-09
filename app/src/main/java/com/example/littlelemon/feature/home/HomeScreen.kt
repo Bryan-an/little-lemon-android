@@ -4,10 +4,10 @@ package com.example.littlelemon.feature.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -18,9 +18,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Search
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -50,6 +57,7 @@ fun HomeScreen(
     uiState: HomeUiState,
     onNavigateToProfile: () -> Unit,
     onSearchPhraseChanged: (String) -> Unit,
+    onCategorySelected: (MenuCategory) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Scaffold(
@@ -64,6 +72,7 @@ fun HomeScreen(
         HomeContent(
             uiState = uiState,
             onSearchPhraseChanged = onSearchPhraseChanged,
+            onCategorySelected = onCategorySelected,
             modifier =
             Modifier
                 .fillMaxSize()
@@ -115,6 +124,7 @@ private fun HomeTopBar(
 private fun HomeContent(
     uiState: HomeUiState,
     onSearchPhraseChanged: (String) -> Unit,
+    onCategorySelected: (MenuCategory) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(modifier = modifier) {
@@ -128,6 +138,14 @@ private fun HomeContent(
 
         item {
             MenuSectionHeader(modifier = Modifier.fillMaxWidth())
+        }
+
+        item {
+            MenuBreakdownSection(
+                selectedCategory = uiState.selectedCategory,
+                onCategorySelected = onCategorySelected,
+                modifier = Modifier.fillMaxWidth(),
+            )
         }
 
         uiState.errorMessage?.let { message ->
@@ -180,6 +198,32 @@ private fun MenuErrorMessage(
         style = MaterialTheme.typography.bodyMedium,
         modifier = modifier.padding(horizontal = 16.dp, vertical = 4.dp),
     )
+}
+
+@Composable
+private fun MenuBreakdownSection(
+    selectedCategory: MenuCategory,
+    onCategorySelected: (MenuCategory) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    LazyRow(
+        modifier = modifier.padding(bottom = 8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        itemsIndexed(MenuCategory.entries) { _, category ->
+            FilterChip(
+                selected = category == selectedCategory,
+                onClick = { onCategorySelected(category) },
+                label = { Text(text = stringResource(category.labelRes)) },
+                colors =
+                FilterChipDefaults.filterChipColors(
+                    selectedContainerColor = MaterialTheme.colorScheme.secondaryContainer,
+                    selectedLabelColor = MaterialTheme.colorScheme.onSecondaryContainer,
+                ),
+            )
+        }
+    }
 }
 
 @Composable
@@ -265,6 +309,13 @@ private fun HeroSearchField(
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Outlined.Search,
+                contentDescription = stringResource(R.string.search_icon_content_description),
+                tint = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.70f),
+            )
+        },
         placeholder = {
             Text(
                 text = stringResource(R.string.search_placeholder),
@@ -343,6 +394,7 @@ private fun HomeScreenPreview() {
             uiState = HomeUiState(menuItems = previewMenuItems),
             onNavigateToProfile = {},
             onSearchPhraseChanged = {},
+            onCategorySelected = {},
         )
     }
 }

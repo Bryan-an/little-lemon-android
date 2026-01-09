@@ -30,7 +30,13 @@
     <string name="restaurant_city">Chicago</string>
     <string name="restaurant_description">We are a family-owned Mediterranean restaurant, focused on traditional recipes served with a modern twist</string>
     <string name="search_placeholder">Enter search phrase</string>
+    <string name="search_icon_content_description">Search</string>
     <string name="order_for_delivery">Order for delivery!</string>
+    <string name="category_all">All</string>
+    <string name="category_starters">Starters</string>
+    <string name="category_mains">Mains</string>
+    <string name="category_desserts">Desserts</string>
+    <string name="category_drinks">Drinks</string>
     <string name="menu_sync_failed">Menu sync failed: %1$s</string>
     <string name="menu_item_image_content_description">Image of %1$s</string>
 </resources>

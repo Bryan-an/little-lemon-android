@@ -15,5 +15,6 @@ fun HomeRoute(
         uiState = uiState.value,
         onNavigateToProfile = onNavigateToProfile,
         onSearchPhraseChanged = viewModel::onSearchPhraseChanged,
+        onCategorySelected = viewModel::onCategorySelected,
     )
 }
